@@ -9,7 +9,10 @@ const BASIC_URL = 'http://localhost:8080'
   providedIn: 'root'
 })
 export class AdminService {
-  constructor(private http: HttpClient) {}
+  
+  constructor(private http: HttpClient) {
+    
+  }
 
   postCar(carDto: any): Observable<any> {
     return this.http.post(`${BASIC_URL}/api/admin/car`, carDto, {

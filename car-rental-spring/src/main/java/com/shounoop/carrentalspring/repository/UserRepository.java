@@ -1,15 +1,19 @@
 package com.shounoop.carrentalspring.repository;
 
-import com.shounoop.carrentalspring.entity.User;
-import com.shounoop.carrentalspring.enums.UserRole;
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import java.util.Optional;
+import com.shounoop.carrentalspring.entity.User;
+import com.shounoop.carrentalspring.enums.UserRole;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
     Optional<User> findFirstByEmail(String email);
 
-    User findByUserRole(UserRole userRole);
+    List<User> findByUserRole(@Param("role") UserRole userRole);
+
 }

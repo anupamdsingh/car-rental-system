@@ -1,5 +1,12 @@
 package com.shounoop.carrentalspring.services.customer;
 
+import java.util.List;
+import java.util.Optional;
+import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
+
+import org.springframework.stereotype.Service;
+
 import com.shounoop.carrentalspring.dto.BookACarDto;
 import com.shounoop.carrentalspring.dto.CarDto;
 import com.shounoop.carrentalspring.entity.BookACar;
@@ -9,13 +16,8 @@ import com.shounoop.carrentalspring.enums.BookCarStatus;
 import com.shounoop.carrentalspring.repository.BookACarRepository;
 import com.shounoop.carrentalspring.repository.CarRepository;
 import com.shounoop.carrentalspring.repository.UserRepository;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.concurrent.TimeUnit;
-import java.util.stream.Collectors;
+import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
@@ -33,6 +35,10 @@ public class CustomerServiceImpl implements CustomerService {
     public boolean bookACar(BookACarDto bookACarDto) {
         Optional<Car> optionalCar = carRepository.findById(bookACarDto.getCarId());
         Optional<User> optionalUser = userRepository.findById(bookACarDto.getUserId());
+
+        System.out.println(optionalCar);
+        System.out.println(optionalUser);
+
 
         if (optionalCar.isPresent() && optionalUser.isPresent()) {
             Car existingCar = optionalCar.get();
